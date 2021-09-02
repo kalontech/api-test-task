@@ -1,0 +1,45 @@
+custom:
+  dotenv:
+    exclude:
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      - NODE_ENV
+    required:
+      file: true
+  serverless-offline:
+    httpPort: 4000
+    noPrependStageInUrl: true
+frameworkVersion: '2'
+functions:
+  graphql:
+    events:
+      - httpApi:
+          path: /${env:SLS_STAGE}/graphql
+          method: '*'
+    handler: src/handler.graphqlHandler
+    memorySize: 2048
+package:
+  exclude:
+    - 'node_modules/**/prisma'
+    - 'node_modules/**/prisma2'
+    - 'node_modules/**/*-darwin'
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-plugin-typescript
+  - serverless-offline
+provider:
+  httpApi:
+    cors: true
+    payload: '1.0'
+  name: aws
+  region: ${env:SLS_REGION}
+  runtime: nodejs12.x
+  stage: ${env:SLS_STAGE}
+  vpc:
+    securityGroupIds:
+      - sg-f88d4c97
+    subnetIds:
+      - subnet-d82838b3
+      - subnet-2498ca69
+service: werz-api
+

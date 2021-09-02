@@ -1,0 +1,29 @@
+datasource db {
+  provider = "postgres"
+  url      = env("PRISMA_DATABASE_URL")
+}
+
+generator client {
+  binaryTargets = ["native", "rhel-openssl-1.0.x"]
+  provider      = "prisma-client-js"
+}
+
+model User {
+  email     String?  @unique
+  id        String   @id @default(cuid())
+  password  String?
+  username  String?  @unique
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+
+  @@map(name: "users")
+}
+
+model Community {
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+
+  @@map(name: "communities")
+}

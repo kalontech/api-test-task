@@ -1,0 +1,4 @@
+# Ignore built files except build/index.js
+build/*
+generated/*
+node_modules/*
