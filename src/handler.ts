@@ -9,17 +9,8 @@ import { graphqlSchema } from "./graphql/schema"
 import { configureServer } from "./graphql/utils"
 import env from "./utils/env"
 
-const publicMutations = [
-  "login",
-  "publicUserProfile",
-  "resetPassword",
-  "resetPasswordRequest",
-  "signUp",
-  "signInSocial",
-  "verifyEmail",
-  "verifyPhone",
-]
-const publicQueries: string[] = []
+const publicMutations = ["login", "signUp", "joinCommunity", "registerForEvent"]
+const publicQueries: string[] = ["users", "communities"]
 
 const serverConfig = configureServer({
   context: graphqlContext,
