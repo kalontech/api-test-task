@@ -19,3 +19,5 @@ Commands:
 - `yarn db:migrate` to make sure latest migrations are applied to the deb
 - `yarn db:seed` generate test data
 - `yarn dev` to start. GraphQL endpoint will be available on http://localhost:4000/development/graphql
+
+Note: This commands assume Unix based shell (bash or similar). If you are running from Window Command Line, you need to adjust `generate` command, since it sets env variable `TYPEGEN` before running the script
